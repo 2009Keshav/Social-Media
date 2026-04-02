@@ -7,3 +7,19 @@
 .side-bar {
   min-height: 100vh;
 }
+.post-card {
+  margin: 20px;
+}
+.posts-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn-ks {
+  float: end;
+}
+.create-post {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 50px;
+}
