@@ -12,18 +12,23 @@ const postListreducer = (currPostList, action) => {
     newPostList = currPostList.filter((post) => {
       return post.id !== action.payload.postId;
     });
+  } else if (action.type === "ADD_POST") {
+    newPostList = [...currPostList, action.payload];
   }
 
   return newPostList;
 };
 
 const PostListProvider = ({ children }) => {
-  const [postList, dispatchPostList] = useReducer(
-    postListreducer,
-    DEFAULT_POST_LIST,
-  );
+  const [postList, dispatchPostList] = useReducer(postListreducer, []);
 
-  const addPost = () => {};
+  const addPost = (newPost) => {
+    // dispatch should always recieve object
+    dispatchPostList({
+      type: "ADD_POST",
+      payload: newPost,
+    });
+  };
 
   const deletePost = (postId) => {
     // dispatch should always recieve object
@@ -47,24 +52,5 @@ const PostListProvider = ({ children }) => {
     </PostListData.Provider>
   );
 };
-
-const DEFAULT_POST_LIST = [
-  {
-    id: "1",
-    title: "Going to Mumbai",
-    body: "Hi friend i am going to mumbai. Enjoying vacation.Hope to enjoy a lot. Peace out.",
-    reactions: 2,
-    userId: "",
-    tags: ["Mumbai", "Vacation", "Enjoing"],
-  },
-  {
-    id: "2",
-    title: "Pass ho gye bhai",
-    body: "4 saal ki masti ke baad bhi ho gye pass.",
-    reactions: 15,
-    userId: "",
-    tags: ["Graduating", "Unbeliveable", "Enjoing"],
-  },
-];
 
 export default PostListProvider;

@@ -11,26 +11,35 @@ const CreatePost = () => {
   const tagsElement = useRef();
 
   const handleSubmit = (event) => {
-    event.prevenDefault();
+    event.preventDefault();
     const userId = userIdElement.current.value;
     const postTitle = postTitleElement.current.value;
     const postBody = postBodyElement.current.value;
-    const reactions = reactions.current.value;
-    const tags = tagsElement.current.value;
+    const reactions = reactionsElement.current.value;
+    // we got number of hashtags
+    let tags = tagsElement.current.value;
+    // Separating hashtags
+    const tagArray = tags.split(" ");
     const Id = Math.random();
     const postId = Id.toFixed(2);
-    return {
+    const newPost = {
       id: postId,
       title: postTitle,
       body: postBody,
-      reactions: 15,
+      reactions: reactions,
       userId: userId,
-      tags: tags,
+      tags: tagArray,
     };
+    userIdElement.current.value = "";
+    postTitleElement.current.value = "";
+    postBodyElement.current.value = "";
+    reactionsElement.current.value = "";
+    tagsElement.current.value = "";
+    addPost(newPost);
   };
 
   return (
-    <form className="create-post" onSubmit={handleSubmit}>
+    <form className="create-post" onSubmit={() => handleSubmit(event)}>
       <div className="mb-3">
         <label forhtml="userId" className="form-label">
           Enter your User Id
@@ -93,7 +102,7 @@ const CreatePost = () => {
           type="text"
           className="form-control"
           id="tags"
-          placeholder="Please enter tags using space.0"
+          placeholder="Format: tag1 tag2 and so on"
           required
         />
       </div>

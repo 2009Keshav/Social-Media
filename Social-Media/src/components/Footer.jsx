@@ -18,21 +18,21 @@ const Footer = () => {
               <use xlinkHref="#bootstrap"></use>
             </svg>{" "}
           </a>{" "}
-          <span className="mb-3 mb-md-0 text-body-secondary">
+          <span className="mb-3 mb-md-0 text-body-primary on-text">
             © 2025 Company, Inc
           </span>{" "}
         </div>{" "}
         <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
           {" "}
           <li className="ms-3">
-            <a className="text-body-secondary" href="#" aria-label="Instagram">
+            <a className="text-body-primary" href="#" aria-label="Instagram">
               <svg className="bi" width="24" height="24" aria-hidden="true">
                 <FiInstagram></FiInstagram>
               </svg>
             </a>
           </li>{" "}
           <li className="ms-3">
-            <a className="text-body-secondary" href="#" aria-label="Facebook">
+            <a className="text-body-primary" href="#" aria-label="Facebook">
               <svg className="bi" width="34" height="34">
                 <MdFacebook></MdFacebook>
               </svg>

@@ -1,7 +1,18 @@
+import { useContext } from "react";
 import myImg from "../assets/image.png";
+import myImg2 from "../assets/image2.png";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
+import { PostListData } from "../store/posts-list-store";
 const SideBar = ({ selectedtab, setSelectedTab }) => {
+  const { postList } = useContext(PostListData);
+
+  let userName;
+  if (postList.length === 0) {
+    userName = "Guest";
+  } else {
+    let user_data = postList[0];
+    userName = user_data.userId;
+  }
   const handleOnClick = (tab_name) => {
     setSelectedTab(tab_name);
   };
@@ -22,7 +33,14 @@ const SideBar = ({ selectedtab, setSelectedTab }) => {
         >
           <use xlinkHref="#bootstrap"></use>
         </svg>
-        <span className="fs-4">Sidebar</span>
+        <img
+          src={myImg2}
+          alt="Your_Profile_photo"
+          width="50"
+          height="50"
+          className="rounded-circle me-2"
+        />
+        <span className="fs-4">KeeBook</span>
       </a>{" "}
       <hr />{" "}
       <ul className="nav nav-pills flex-column mb-auto">
@@ -34,15 +52,6 @@ const SideBar = ({ selectedtab, setSelectedTab }) => {
             className={`nav-link text-white ${selectedtab === "home" && "active"}`}
             aria-current="page"
           >
-            {" "}
-            <svg
-              className="bi pe-none me-2"
-              width="16"
-              height="16"
-              aria-hidden="true"
-            >
-              <use xlinkHref="#home"></use>
-            </svg>
             Home
           </a>{" "}
         </li>{" "}
@@ -52,15 +61,6 @@ const SideBar = ({ selectedtab, setSelectedTab }) => {
             href="#"
             className={`nav-link text-white ${selectedtab === "post" && "active"}`}
           >
-            {" "}
-            <svg
-              className="bi pe-none me-2"
-              width="16"
-              height="16"
-              aria-hidden="true"
-            >
-              <use xlinkHref="#speedometer2"></use>
-            </svg>
             Create Post
           </a>{" "}
         </li>{" "}
@@ -82,7 +82,7 @@ const SideBar = ({ selectedtab, setSelectedTab }) => {
             height="32"
             className="rounded-circle me-2"
           />{" "}
-          <strong>Kushal raj</strong>
+          <strong>{userName}</strong>
         </a>
         <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
           {" "}

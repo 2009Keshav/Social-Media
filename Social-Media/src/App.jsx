@@ -1,3 +1,7 @@
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -7,7 +11,7 @@ import PostList from "./components/PostList";
 import { useState } from "react";
 import PostListProvider from "./store/posts-list-store";
 function App() {
-  const [selectedtab, setSelectedTab] = useState("post");
+  const [selectedtab, setSelectedTab] = useState("home");
 
   return (
     <PostListProvider>
